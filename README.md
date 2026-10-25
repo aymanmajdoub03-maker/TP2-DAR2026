@@ -1,2 +1,2 @@
-<img height="150" src="C:\Users\HP\IdeaProjects\MajdoubAyman_LSI3_DevAppReparties\TP2-DAR2026\images\1.1.jpg" width="150"/>
-<img height="150" src="C:\Users\HP\IdeaProjects\MajdoubAyman_LSI3_DevAppReparties\TP2-DAR2026\images\1.2.jpg" width="150"/>
+<img height="150" src="C:\Users\HP\IdeaProjects\MajdoubAyman_LSI3_DevAppReparties\TP2-DAR2026\images\2.1.jpg" width="150"/>
+<img height="150" src="C:\Users\HP\IdeaProjects\MajdoubAyman_LSI3_DevAppReparties\TP2-DAR2026\images\2.2.jpg" width="150"/>

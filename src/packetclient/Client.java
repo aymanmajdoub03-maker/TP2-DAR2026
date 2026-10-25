@@ -3,29 +3,37 @@ package packetclient;
 import java.io.*;
 import java.net.*;
 import java.util.Scanner;
+import packetserveur.Operation; // Importation de la classe du serveur
 
 public class Client {
-    public static void main(String[] args) throws IOException {
-
+    public static void main(String[] args) throws Exception {
+        // --- MÉTHODE DE CONNEXION ---
         Socket socket = new Socket("localhost", 1234);
         System.out.println("Je suis connecté");
 
-
-        BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-        PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
+        // Préparation des données par l'utilisateur
         Scanner scanner = new Scanner(System.in);
+        System.out.print("Entrez le premier opérande : ");
+        double op1 = scanner.nextDouble();
 
-        System.out.print("Entrez votre opération (ex: 55*25 ou 88-8) : ");
-        String operation = scanner.nextLine().trim();
+        System.out.print("Entrez l'opérateur (+, -, *, /) : ");
+        String op = scanner.next();
 
-        // Envoi de la requête au serveur
-        out.println(operation);
+        System.out.print("Entrez le deuxième opérande : ");
+        double op2 = scanner.nextDouble();
 
-        // Lecture de la réponse
-        String resultat = in.readLine();
-        if (resultat != null) {
-            System.out.println("Le résultat reçu est : " + resultat);
-        }
+        // a) & b) Création de l'objet et envoi au serveur
+        Operation operation = new Operation(op1, op, op2);
+
+        ObjectOutputStream oos = new ObjectOutputStream(socket.getOutputStream());
+        oos.writeObject(operation);
+        oos.flush();
+
+        // g) Le client lit et affiche le résultat
+        ObjectInputStream ois = new ObjectInputStream(socket.getInputStream());
+        String resultat = (String) ois.readObject();
+
+        System.out.println("Le résultat reçu du serveur est : " + resultat);
 
         // Fermeture
         socket.close();
